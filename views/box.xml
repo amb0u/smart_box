@@ -1,0 +1,62 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="box_list_view">
+      <field name="name">Smart box list</field>
+      <field name="model">smart_box.box</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="num_box"/>
+          <field name="description"/>
+          <field name="localisation"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="box_form_view">
+      <field name="name">Box Form</field>
+      <field name="model">smart_box.box</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="num_box"/>
+                <field name="description"/>
+              </group>
+              <group>
+                <field name="localisation"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Les enregistrements">
+                <field name="enregistrement_ids"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="box_action_window">
+      <field name="name">Boxes</field>
+      <field name="res_model">smart_box.box</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Smart Box" id="smart_box.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Smart Boxes" id="box_cat" parent="smart_box.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Box 1" id="smart_box_list" parent="box_cat"
+              action="box_action_window"/>
+  </data>
+</odoo>

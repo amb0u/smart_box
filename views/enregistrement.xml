@@ -1,0 +1,78 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="enregistrement_list_view">
+      <field name="name">Smart box list</field>
+      <field name="model">smart_box.enregistrement</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="temperature"/>
+          <field name="humidite"/>
+          <field name="date"/>
+          <field name="cpu"/>
+          <field name="temp"/>
+          <field name="memoire"/>
+          <field name="box_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="enregistrement_form_view">
+      <field name="name">Box Form</field>
+      <field name="model">smart_box.enregistrement</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="temperature"/>
+                <field name="humidite"/>
+                <field name="date"/>
+              </group>
+              <group>
+                <field name="cpu"/>
+                <field name="temp"/>
+                <field name="memoire"/>
+                <field name="box_id"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="enregistrement_action_window">
+      <field name="name">Enregistrements</field>
+      <field name="res_model">smart_box.enregistrement</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="enregistrement_graph" model="ir.ui.view">
+      <field name="name">enregistrement.graph</field>
+      <field name="model">smart_box.enregistrement</field>
+      <field name="arch" type="xml">
+        <graph string="Statistiques">
+          <field name="temperature" type="row"/>
+          <field name="humidite" type="col"/>
+          <field name="temp" type="measure"/>
+        </graph>
+      </field>
+
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Smart Box" id="smart_box.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Les enregistrements" id="smart_box_enregistrement_cat" parent="smart_box.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Enregistrements" id="smart_box_enregistrement_list" parent="smart_box_enregistrement_cat"
+              action="enregistrement_action_window"/>
+  </data>
+</odoo>
